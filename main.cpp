@@ -5,6 +5,8 @@ using namespace std;
 
 int main() {
     Banco banco("Banco Javeriano");
+    banco.guardar("BancoJaveriano.json");
+    banco.cargar("BancoJaveriano.json");
 
     int limiteSobregiro, saldo, opcionP, opcionSub, tipoCuenta, id, parametro, numero, valor;
     string nombre, direccion;
@@ -149,8 +151,9 @@ int main() {
                     }
 
                 }while (opcionSub != 5);
-                break;
+
             }
+            break;
 
 
 
@@ -202,24 +205,27 @@ int main() {
 
 
                 } while (opcionSub != 3);
-                break;
-
-                case 5 : {
-
-                    cout << "Guardar y salir..." << endl;
-                    banco.guardar("BancoJaveriano.json");
-                    cout << "Datos guardados. Saliendo del programa...\n";
-                    break;
-
-                }
 
             }
+            break;
+
+            case 5 : {
+
+                cout << "Guardar y salir..." << endl;
+                banco.guardar("BancoJaveriano.json");
+                cout << "Datos guardados. Saliendo del programa...\n";
 
 
+            }
+            break;
 
         }
     }
+
+
+
 }
+
 
 
 

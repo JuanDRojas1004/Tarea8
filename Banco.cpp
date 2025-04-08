@@ -125,3 +125,50 @@ void Banco::retirar(int numero, int valor) {
     }
 
 }
+
+void Banco::cargar(const string &archivo) {{
+    ifstream file(archivo);
+    if (!file.is_open()) {
+        return;
+    }
+    json datos;
+    file >> datos;
+
+    nombre = datos["nombre"];
+
+    clientes.clear();
+    for (auto& clienteJson : datos["clientes"]) {
+        clientes.emplace_back(
+            clienteJson["nombre"],
+            clienteJson["direccion"],
+            clienteJson["id"]
+        );
+    }
+    for (auto& cuenta : cuentas) {
+        delete cuenta;
+    }
+    cuentas.clear();
+
+    for (auto& cuentaJson : datos["cuentas"]) {
+        string tipo = cuentaJson["tipo"];
+        int numero = cuentaJson["numero"];
+        double saldo = cuentaJson["saldo"];
+        int idCliente = cuentaJson["idCliente"];
+
+        if (tipo == "ahorros") {
+            double tasa = cuentaJson["tasaInteres"];
+            cuentas.push_back(new CuentaAhorros(numero, saldo, idCliente, tasa));
+        } else if (tipo == "corriente") {
+            double limite = cuentaJson["limiteSobregiro"];
+            cuentas.push_back(new CuentaCorriente(numero, saldo, idCliente, limite));
+        }
+    }
+    cout << "Datos cargados correctamente desde " << archivo << endl;
+
+
+
+}
+
+}
+
+

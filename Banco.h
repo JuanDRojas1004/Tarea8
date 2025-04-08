@@ -65,6 +65,8 @@ public:
     void consignar (int numero, int valor);
 
     void retirar (int numero, int valor);
+
+    void cargar(const string& archivo = "BancoJaveriano.json");
 };
 
 
