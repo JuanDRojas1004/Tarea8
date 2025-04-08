@@ -32,7 +32,12 @@ int main() {
 
                         case 1: {
                             cout << "Agregar Clientes" << endl;
-                            cin >> nombre >> direccion;
+                            cout << "Ingrese nombre:" << endl;
+                            cin >> nombre;
+                            cin.ignore();
+                            cout << "Ingrese direccion:" << endl;
+                            getline(cin, direccion);
+
                             banco.addCliente(nombre, direccion);
                             cout << "Cliente guardado con exito" << endl;
                             break;
@@ -149,69 +154,70 @@ int main() {
 
 
 
-             case 4 :
-                 do{
+            case 4 : {
+                do{
 
-                 cout << "4.1) Aplicar Tasa de Interes a Cuentas de Ahorro\n";
-                 cout << "4.2) Consignar Dinero en una Cuenta\n";
-                 cout << "4.3) Retirar Dinero de una Cuenta\n";
-                 cin >> opcionSub;
+                    cout << "4.1) Aplicar Tasa de Interes a Cuentas de Ahorro\n";
+                    cout << "4.2) Consignar Dinero en una Cuenta\n";
+                    cout << "4.3) Retirar Dinero de una Cuenta\n";
+                    cin >> opcionSub;
 
-                 switch (opcionSub) {
+                    switch (opcionSub) {
 
-                     case 1: {
+                        case 1: {
 
-                         cout << "Ingrese una tasa de interes: " << endl;
-                         double tasa;
-                         cin >> tasa;
+                            cout << "Ingrese una tasa de interes: " << endl;
+                            double tasa;
+                            cin >> tasa;
 
-                         banco.aplicarTasa(tasa);
+                            banco.aplicarTasa(tasa);
 
-                     }
+                        }
 
-                     case 2: {
+                        case 2: {
 
-                         cout << "ingrese el numero de cuenta:" << endl;
-                         cin >> numero;
-                         cout << "Ingrese el monto a consignar:" << endl;
-                         cin >> valor;
+                            cout << "ingrese el numero de cuenta:" << endl;
+                            cin >> numero;
+                            cout << "Ingrese el monto a consignar:" << endl;
+                            cin >> valor;
 
-                         banco.consignar(numero, valor);
-
-
-
-
-                     }
-
-                     case 3: {
-                         cout << "ingrese el numero de cuenta:" << endl;
-                         cin >> numero;
-                         cout << "Ingrese el monto a retirar:" << endl;
-                         cin >> valor;
-
-                         banco.retirar(numero, valor);
-
-                     }
-                 }
+                            banco.consignar(numero, valor);
 
 
 
-            } while (opcionSub != 3);
-            break;
 
-            case 5 : {
+                        }
 
-                cout << "Guardar y salir..." << endl;
-                banco.guardar("BancoJaveriano.json");
-                cout << "Datos guardados. Saliendo del programa...\n";
+                        case 3: {
+                            cout << "ingrese el numero de cuenta:" << endl;
+                            cin >> numero;
+                            cout << "Ingrese el monto a retirar:" << endl;
+                            cin >> valor;
+
+                            banco.retirar(numero, valor);
+
+                        }
+                    }
+
+
+
+                } while (opcionSub != 3);
                 break;
+
+                case 5 : {
+
+                    cout << "Guardar y salir..." << endl;
+                    banco.guardar("BancoJaveriano.json");
+                    cout << "Datos guardados. Saliendo del programa...\n";
+                    break;
+
+                }
 
             }
 
+
+
         }
-
-
-
     }
 }
 
