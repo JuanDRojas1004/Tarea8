@@ -28,6 +28,8 @@ public:
     json toJson () override;
 
     string getTipo() const override;
+
+    void retirar(int monto) override;
 };
 
 

@@ -15,3 +15,12 @@ json CuentaCorriente::toJson() {
 }
 
 string CuentaCorriente::getTipo() const { return "corriente"; }
+
+void CuentaCorriente::retirar(int monto) {
+    if (saldo - monto >= -limiteSobregiro) {
+        saldo -= monto;
+    } else {
+        cout << "Has superado el limite" << endl;
+    }
+}
+

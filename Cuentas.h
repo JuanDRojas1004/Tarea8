@@ -31,11 +31,13 @@ public:
 
     virtual void mostrar();
 
-    virtual json toJson() = 0;
+    virtual json toJson() {" ";};
 
     virtual string getTipo() const = 0;
 
     void consignar(int monto);
+
+    virtual void retirar (int monto);
 };
 
 

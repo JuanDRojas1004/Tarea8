@@ -1,5 +1,18 @@
 {
-    "CLientes": null,
-    "Cuentas": null,
+    "Clientes": [
+        {
+            "Direccion": "popo",
+            "ID": 1,
+            "Nombre": "Juan"
+        }
+    ],
+    "Cuentas": [
+        {
+            "ID": 1,
+            "Limite Sobregiro": 20,
+            "Numero": 100,
+            "Saldo": -10
+        }
+    ],
     "Nombre": "Banco Javeriano"
 }

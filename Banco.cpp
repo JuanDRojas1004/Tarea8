@@ -77,7 +77,7 @@ json Banco::toJson() {
         clientesJson.push_back(c.toJson());
     }
 
-    j["CLientes"] = clientesJson;
+    j["Clientes"] = clientesJson;
 
     json cuentasJson;
     for (auto& c : cuentas) {
@@ -97,6 +97,7 @@ void Banco::aplicarTasa(double tasa) {
 }
 
 void Banco::guardar(const string &archivo) {
+
     ofstream file(archivo);
     file << toJson ().dump(4);
     cout << "Datos guardados con exito en:" << archivo << endl;
@@ -119,25 +120,25 @@ void Banco::retirar(int numero, int valor) {
 
     for (Cuentas* cuenta : cuentas) {
         if (cuenta->getNumero() == numero) {
-            cuenta->consignar(-valor);
-            cout << "Retiro exitos" << endl;
+            cuenta->retirar(valor);
         }
     }
 
 }
 
-void Banco::cargar(const string &archivo) {{
+void Banco::cargar(const string &archivo) {
     ifstream file(archivo);
     if (!file.is_open()) {
+        cout << "No se pudo cargar el archivo..." << endl;
         return;
     }
     json datos;
     file >> datos;
 
-    nombre = datos["nombre"];
+    nombre = datos["Nombre"];
 
     clientes.clear();
-    for (auto& clienteJson : datos["clientes"]) {
+    for (auto& clienteJson : datos["Clientes"]) {
         clientes.emplace_back(
             clienteJson["nombre"],
             clienteJson["direccion"],
@@ -149,7 +150,7 @@ void Banco::cargar(const string &archivo) {{
     }
     cuentas.clear();
 
-    for (auto& cuentaJson : datos["cuentas"]) {
+    for (auto& cuentaJson : datos["Cuentas"]) {
         string tipo = cuentaJson["tipo"];
         int numero = cuentaJson["numero"];
         double saldo = cuentaJson["saldo"];
@@ -166,8 +167,6 @@ void Banco::cargar(const string &archivo) {{
     cout << "Datos cargados correctamente desde " << archivo << endl;
 
 
-
-}
 
 }
 

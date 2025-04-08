@@ -22,3 +22,7 @@ void Cuentas::consignar(int monto) {
     }
 }
 
+void Cuentas::retirar(int monto) {
+    saldo -= monto;
+}
+

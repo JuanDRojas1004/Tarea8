@@ -3,10 +3,12 @@
 
 using namespace std;
 
+
 int main() {
+
     Banco banco("Banco Javeriano");
-    banco.guardar("BancoJaveriano.json");
     banco.cargar("BancoJaveriano.json");
+
 
     int limiteSobregiro, saldo, opcionP, opcionSub, tipoCuenta, id, parametro, numero, valor;
     string nombre, direccion;
@@ -22,7 +24,6 @@ int main() {
         cin >> opcionP;
 
         switch (opcionP) {
-
             case 1:
                 do {
 
@@ -163,6 +164,7 @@ int main() {
                     cout << "4.1) Aplicar Tasa de Interes a Cuentas de Ahorro\n";
                     cout << "4.2) Consignar Dinero en una Cuenta\n";
                     cout << "4.3) Retirar Dinero de una Cuenta\n";
+                    cout << "4.4) Salir\n";
                     cin >> opcionSub;
 
                     switch (opcionSub) {
@@ -175,6 +177,8 @@ int main() {
 
                             banco.aplicarTasa(tasa);
 
+                            break;
+
                         }
 
                         case 2: {
@@ -185,6 +189,8 @@ int main() {
                             cin >> valor;
 
                             banco.consignar(numero, valor);
+
+                            break;
 
 
 
@@ -199,26 +205,42 @@ int main() {
 
                             banco.retirar(numero, valor);
 
+                            break;
+
                         }
                     }
 
 
 
-                } while (opcionSub != 3);
+                } while (opcionSub != 4);
+                break;
 
             }
-            break;
+
 
             case 5 : {
 
-                cout << "Guardar y salir..." << endl;
-                banco.guardar("BancoJaveriano.json");
-                cout << "Datos guardados. Saliendo del programa...\n";
+                do{
+
+                    cout << "5.1) Guardar y salir\n";
+                    cin >> opcionSub;
+                    switch (opcionSub)
+
+                        case 1 : {
+
+
+                        banco.guardar("BancoJaveriano.json");
+                        cout << "Datos guardados. Saliendo del programa...\n";
+                        break;
+                        }
+
+
+                }while (opcionSub != 1);
+                return 0;
+
 
 
             }
-            break;
-
         }
     }
 
